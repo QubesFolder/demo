@@ -1,0 +1,2036 @@
+--==========================================================================================
+-- QUBESFOLDER(c) DEMO MODEL
+--==========================================================================================
+
+-- CUBE: A set of MEASURES qualified by DIMENSIONS
+-- DIMENSION: An analytical axis for qualifying CUBE data
+-- HIERARCHY: A roll-up tree of DIMENSIONS elements
+-- MEASURE: A numerical attribute of CUBE data, aggregated across DIMENSIONS via HIERARCHY
+-- Area defines a CUBE's subset by DIMENSIONS ranges
+--
+-- SYNTAX
+-- A command An object A name
+-- New line as a separator of elements
+-- Semicolon as an end of a command ';'
+-- Double minus is a line comment '--'
+-- Single or double quotes for strings
+
+--==========================================================================================
+
+--171 elements, depth 4
+DEFINE DIMENSION Period
+  HIERARCHY:
+    All time ID 1
+      2021 ID 2
+        Q1 ID 12
+          jan ID 13
+          feb ID 14
+          mar ID 15
+        Q2 ID 16
+          apr ID 17
+          may ID 18
+          jun ID 19
+        Q3 ID 20
+          jul ID 21
+          aug ID 22
+          sep ID 23
+        Q4 ID 24
+          oct ID 25
+          nov ID 26
+          dec ID 27
+      2022 ID 3
+        Q1 ID 28
+          jan ID 29
+          feb ID 30
+          mar ID 31
+        Q2 ID 32
+          apr ID 33
+          may ID 34
+          jun ID 35
+        Q3 ID 36
+          jul ID 37
+          aug ID 38
+          sep ID 39
+        Q4 ID 40
+          oct ID 41
+          nov ID 42
+          dec ID 43
+      2023 ID 4
+        Q1 ID 44
+          jan ID 45
+          feb ID 46
+          mar ID 47
+        Q2 ID 48
+          apr ID 49
+          may ID 50
+          jun ID 51
+        Q3 ID 52
+          jul ID 53
+          aug ID 54
+          sep ID 55
+        Q4 ID 56
+          oct ID 57
+          nov ID 58
+          dec ID 59
+      2024 ID 5
+        Q1 ID 60
+          jan ID 61
+          feb ID 62
+          mar ID 63
+        Q2 ID 64
+          apr ID 65
+          may ID 66
+          jun ID 67
+        Q3 ID 68
+          jul ID 69
+          aug ID 70
+          sep ID 71
+        Q4 ID 72
+          oct ID 73
+          nov ID 74
+          dec ID 75
+      2025 ID 6
+        Q1 ID 76
+          jan ID 77
+          feb ID 78
+          mar ID 79
+        Q2 ID 80
+          apr ID 81
+          may ID 82
+          jun ID 83
+        Q3 ID 84
+          jul ID 85
+          aug ID 86
+          sep ID 87
+        Q4 ID 88
+          oct ID 89
+          nov ID 90
+          dec ID 91
+      2026 ID 7
+        Q1 ID 92
+          jan ID 93
+          feb ID 94
+          mar ID 95
+        Q2 ID 96
+          apr ID 97
+          may ID 98
+          jun ID 99
+        Q3 ID 100
+          jul ID 101
+          aug ID 102
+          sep ID 103
+        Q4 ID 104
+          oct ID 105
+          nov ID 106
+          dec ID 107
+      2027 ID 8
+        Q1 ID 108
+          jan ID 109
+          feb ID 110
+          mar ID 111
+        Q2 ID 112
+          apr ID 113
+          may ID 114
+          jun ID 115
+        Q3 ID 116
+          jul ID 117
+          aug ID 118
+          sep ID 119
+        Q4 ID 120
+          oct ID 121
+          nov ID 122
+          dec ID 123
+      2028 ID 9
+        Q1 ID 124
+          jan ID 125
+          feb ID 126
+          mar ID 127
+        Q2 ID 128
+          apr ID 129
+          may ID 130
+          jun ID 131
+        Q3 ID 132
+          jul ID 133
+          aug ID 134
+          sep ID 135
+        Q4 ID 136
+          oct ID 137
+          nov ID 138
+          dec ID 139
+      2029 ID 10
+        Q1 ID 140
+          jan ID 141
+          feb ID 142
+          mar ID 143
+        Q2 ID 144
+          apr ID 145
+          may ID 146
+          jun ID 147
+        Q3 ID 148
+          jul ID 149
+          aug ID 150
+          sep ID 151
+        Q4 ID 152
+          oct ID 153
+          nov ID 154
+          dec ID 155
+      2030 ID 11
+        Q1 ID 156
+          jan ID 157
+          feb ID 158
+          mar ID 159
+        Q2 ID 160
+          apr ID 161
+          may ID 162
+          jun ID 163
+        Q3 ID 164
+          jul ID 165
+          aug ID 166
+          sep ID 167
+        Q4 ID 168
+          oct ID 169
+          nov ID 170
+          dec ID 171
+;
+
+--55 elements, depth 3
+DEFINE DIMENSION Product
+  HIERARCHY:
+    All products
+      Consumer & Small Business
+        Premium Series Laptops & Desktops
+        Mainstream Series Laptops & Desktops
+        Small Business Series Laptops & Desktops
+        Gaming Series Laptops & Desktops
+        Value Gaming Series
+      Commercial & Enterprise
+        Business Laptops
+        Workstation Laptops & Desktops
+        Commercial Desktops
+        Rugged Laptops & Tablets
+      Servers & Rack Infrastructure
+        Enterprise Tower Servers
+        Enterprise Rack Servers
+        Enterprise Blade Servers
+        High-Density Compute Servers
+        Edge Computing Servers
+      Storage Systems
+        Mid-Range Block Storage
+        High-End Enterprise Storage
+        Entry-Level & Backup Storage
+        Object Storage
+        Hybrid Storage Arrays
+      Networking Equipment
+        Data Center Ethernet Switches
+        Security Appliances & Firewalls
+        Network Transceivers
+        Cabling
+      Data Protection & Backup
+        Backup & Recovery Appliances
+        Deduplication Storage Systems
+        Integrated Backup Appliances
+        Hyperconverged Backup Solutions
+      Hyperconverged & Cloud Infrastructure
+        Hyperconverged Infrastructure Appliances
+        Software-Defined Storage & Compute Platforms
+        Cloud-as-a-Service Platforms
+      Monitors & Peripherals
+        Premium Monitors
+        Productivity Monitors
+        Entry-Level Monitors
+        Gaming Monitors
+        Docking Stations
+        Keyboards, Mice & Webcams
+      Components & Service Parts
+        Original Power Adapters
+        Laptop Batteries
+        Memory Modules (RAM)
+        Solid-State Drives
+        Spare Motherboards & Fans
+      Testing & Validation
+        Validated Reference Architectures
+        Compatibility Testing Lab
+        Server Test & Development Kits
+;
+
+--6 elements, depth 1
+DEFINE DIMENSION Currency
+  HIERARCHY:
+    USD
+    CNY
+    EUR
+    JPY
+    GBP
+    RUR
+;
+
+--136 elements, depth 4
+DEFINE DIMENSION Client
+  HIERARCHY:
+    All clients
+      Corporate
+        Large Enterprise
+          Microsoft Corporation
+          Amazon.com Inc
+          Oracle Corporation
+          International Business Machines (IBM)
+          Alphabet (Google)
+          Meta Platforms
+          Tesla Inc
+          Netflix Inc
+          Salesforce Inc
+          Adobe Inc
+        Mid-Market
+          Zoom Video Communications
+          Shopify Inc
+          Uber Technologies
+          Airbnb Inc
+          Pr Technologies
+          Snowflake Inc
+          Datadog Inc
+          CrowdStrike Holdings
+        Regional Business
+          Acme Corporation
+          Stark Industries
+          Wayne Enterprises
+          Oscorp Industries
+          Umbrella Corporation
+          Tyrell Corporation
+          InGen Technologies
+      SME
+        Technology SME
+          Cloud9 Software
+          DataStream Analytics
+          SecureNet Solutions
+          GreenTech Innovations
+          CodeCraft Studios
+        Manufacturing SME
+          Precision Parts Ltd
+          MetalWorks Fabrication
+          AutoComponents Inc
+          Packaging Solutions
+        Retail & Wholesale
+          Metro Distribution
+          CityMart Wholesale
+          Fashion Forward Group
+          ElectroSupply Chain
+        Services SME
+          LegalEase Consulting
+          MedCare Clinics
+          EduSmart Training
+          CleanEnergy Services
+      MUSH
+        Municipalities
+          City of Los Angeles
+          City of Chicago
+          City of Houston
+          City of Phoenix
+          City of Philadelphia
+          King County Washington
+          Miami-Dade County
+        Universities
+          Harvard University
+          Stanford University
+          Massachusetts Institute of Technology
+          University of Michigan
+          University of Texas
+          University of California System
+          New York University
+          Columbia University
+        Schools (K-12)
+          Los Angeles Unified School District
+          New York City Department of Education
+          Chicago Public Schools
+          Houston Independent School District
+          Miami-Dade County Public Schools
+        Hospitals & Healthcare
+          Kaiser Permanente
+          Mayo Clinic
+          Cleveland Clinic
+          Johns Hopkins Hospital
+          HCA Healthcare Inc
+          Memorial Sloan Kettering
+          Mount Sinai Health System
+      Private
+        High Net Worth Individuals
+          Elon Musk
+          Jeff Bezos
+          Mark Zuckerberg
+          Warren Buffett
+          Larry Ellison
+          Bill Gates
+          Michael Dell
+          Sergey Brin
+        Professional Services
+          Law Firm Partners
+          Medical Professionals
+          Executive Leadership
+          Sports & Entertainment
+        General Consumers
+          Client A
+          Client B
+          Client C
+          Client D
+          Client E
+      Global Corp
+        Technology Global
+          Samsung Electronics
+          Sony Corporation
+          Panasonic Corporation
+          LG Electronics
+          Hitachi Ltd
+          Toshiba Corporation
+        Automotive Global
+          Toyota Motor Corporation
+          Volkswagen Group
+          Mercedes-Benz Group
+          BMW Group
+          Honda Motor Co
+          Ford Motor Company
+          General Motors
+        Energy & Industrial
+          Shell plc
+          BP plc
+          ExxonMobil
+          Chevron Corporation
+          TotalEnergies
+          Siemens AG
+          General Electric
+        Retail Global
+          Walmart Inc
+          Costco Wholesale
+          Target Corporation
+          Carrefour
+          IKEA Group
+          Aldi Group
+;
+
+--1006 elements, depth 3
+DEFINE DIMENSION Contract
+  HIERARCHY:
+    All contracts
+      Direct Sales
+        D#00001
+        D#00002
+        D#00003
+        D#00004
+        D#00005
+        D#00006
+        D#00007
+        D#00008
+        D#00009
+        D#00010
+        D#00011
+        D#00012
+        D#00013
+        D#00014
+        D#00015
+        D#00016
+        D#00017
+        D#00018
+        D#00019
+        D#00020
+        D#00021
+        D#00022
+        D#00023
+        D#00024
+        D#00025
+        D#00026
+        D#00027
+        D#00028
+        D#00029
+        D#00030
+        D#00031
+        D#00032
+        D#00033
+        D#00034
+        D#00035
+        D#00036
+        D#00037
+        D#00038
+        D#00039
+        D#00040
+        D#00041
+        D#00042
+        D#00043
+        D#00044
+        D#00045
+        D#00046
+        D#00047
+        D#00048
+        D#00049
+        D#00050
+        D#00051
+        D#00052
+        D#00053
+        D#00054
+        D#00055
+        D#00056
+        D#00057
+        D#00058
+        D#00059
+        D#00060
+        D#00061
+        D#00062
+        D#00063
+        D#00064
+        D#00065
+        D#00066
+        D#00067
+        D#00068
+        D#00069
+        D#00070
+        D#00071
+        D#00072
+        D#00073
+        D#00074
+        D#00075
+        D#00076
+        D#00077
+        D#00078
+        D#00079
+        D#00080
+        D#00081
+        D#00082
+        D#00083
+        D#00084
+        D#00085
+        D#00086
+        D#00087
+        D#00088
+        D#00089
+        D#00090
+        D#00091
+        D#00092
+        D#00093
+        D#00094
+        D#00095
+        D#00096
+        D#00097
+        D#00098
+        D#00099
+        D#00100
+        D#00101
+        D#00102
+        D#00103
+        D#00104
+        D#00105
+        D#00106
+        D#00107
+        D#00108
+        D#00109
+        D#00110
+        D#00111
+        D#00112
+        D#00113
+        D#00114
+        D#00115
+        D#00116
+        D#00117
+        D#00118
+        D#00119
+        D#00120
+        D#00121
+        D#00122
+        D#00123
+        D#00124
+        D#00125
+        D#00126
+        D#00127
+        D#00128
+        D#00129
+        D#00130
+        D#00131
+        D#00132
+        D#00133
+        D#00134
+        D#00135
+        D#00136
+        D#00137
+        D#00138
+        D#00139
+        D#00140
+        D#00141
+        D#00142
+        D#00143
+        D#00144
+        D#00145
+        D#00146
+        D#00147
+        D#00148
+        D#00149
+        D#00150
+        D#00151
+        D#00152
+        D#00153
+        D#00154
+        D#00155
+        D#00156
+        D#00157
+        D#00158
+        D#00159
+        D#00160
+        D#00161
+        D#00162
+        D#00163
+        D#00164
+        D#00165
+        D#00166
+        D#00167
+        D#00168
+        D#00169
+        D#00170
+        D#00171
+        D#00172
+        D#00173
+        D#00174
+        D#00175
+        D#00176
+        D#00177
+        D#00178
+        D#00179
+        D#00180
+        D#00181
+        D#00182
+        D#00183
+        D#00184
+        D#00185
+        D#00186
+        D#00187
+        D#00188
+        D#00189
+        D#00190
+        D#00191
+        D#00192
+        D#00193
+        D#00194
+        D#00195
+        D#00196
+        D#00197
+        D#00198
+        D#00199
+        D#00200
+      Resellers
+        R#00201
+        R#00202
+        R#00203
+        R#00204
+        R#00205
+        R#00206
+        R#00207
+        R#00208
+        R#00209
+        R#00210
+        R#00211
+        R#00212
+        R#00213
+        R#00214
+        R#00215
+        R#00216
+        R#00217
+        R#00218
+        R#00219
+        R#00220
+        R#00221
+        R#00222
+        R#00223
+        R#00224
+        R#00225
+        R#00226
+        R#00227
+        R#00228
+        R#00229
+        R#00230
+        R#00231
+        R#00232
+        R#00233
+        R#00234
+        R#00235
+        R#00236
+        R#00237
+        R#00238
+        R#00239
+        R#00240
+        R#00241
+        R#00242
+        R#00243
+        R#00244
+        R#00245
+        R#00246
+        R#00247
+        R#00248
+        R#00249
+        R#00250
+        R#00251
+        R#00252
+        R#00253
+        R#00254
+        R#00255
+        R#00256
+        R#00257
+        R#00258
+        R#00259
+        R#00260
+        R#00261
+        R#00262
+        R#00263
+        R#00264
+        R#00265
+        R#00266
+        R#00267
+        R#00268
+        R#00269
+        R#00270
+        R#00271
+        R#00272
+        R#00273
+        R#00274
+        R#00275
+        R#00276
+        R#00277
+        R#00278
+        R#00279
+        R#00280
+        R#00281
+        R#00282
+        R#00283
+        R#00284
+        R#00285
+        R#00286
+        R#00287
+        R#00288
+        R#00289
+        R#00290
+        R#00291
+        R#00292
+        R#00293
+        R#00294
+        R#00295
+        R#00296
+        R#00297
+        R#00298
+        R#00299
+        R#00300
+        R#00301
+        R#00302
+        R#00303
+        R#00304
+        R#00305
+        R#00306
+        R#00307
+        R#00308
+        R#00309
+        R#00310
+        R#00311
+        R#00312
+        R#00313
+        R#00314
+        R#00315
+        R#00316
+        R#00317
+        R#00318
+        R#00319
+        R#00320
+        R#00321
+        R#00322
+        R#00323
+        R#00324
+        R#00325
+        R#00326
+        R#00327
+        R#00328
+        R#00329
+        R#00330
+        R#00331
+        R#00332
+        R#00333
+        R#00334
+        R#00335
+        R#00336
+        R#00337
+        R#00338
+        R#00339
+        R#00340
+        R#00341
+        R#00342
+        R#00343
+        R#00344
+        R#00345
+        R#00346
+        R#00347
+        R#00348
+        R#00349
+        R#00350
+        R#00351
+        R#00352
+        R#00353
+        R#00354
+        R#00355
+        R#00356
+        R#00357
+        R#00358
+        R#00359
+        R#00360
+        R#00361
+        R#00362
+        R#00363
+        R#00364
+        R#00365
+        R#00366
+        R#00367
+        R#00368
+        R#00369
+        R#00370
+        R#00371
+        R#00372
+        R#00373
+        R#00374
+        R#00375
+        R#00376
+        R#00377
+        R#00378
+        R#00379
+        R#00380
+        R#00381
+        R#00382
+        R#00383
+        R#00384
+        R#00385
+        R#00386
+        R#00387
+        R#00388
+        R#00389
+        R#00390
+        R#00391
+        R#00392
+        R#00393
+        R#00394
+        R#00395
+        R#00396
+        R#00397
+        R#00398
+        R#00399
+        R#00400
+      Subscription
+        S#00401
+        S#00402
+        S#00403
+        S#00404
+        S#00405
+        S#00406
+        S#00407
+        S#00408
+        S#00409
+        S#00410
+        S#00411
+        S#00412
+        S#00413
+        S#00414
+        S#00415
+        S#00416
+        S#00417
+        S#00418
+        S#00419
+        S#00420
+        S#00421
+        S#00422
+        S#00423
+        S#00424
+        S#00425
+        S#00426
+        S#00427
+        S#00428
+        S#00429
+        S#00430
+        S#00431
+        S#00432
+        S#00433
+        S#00434
+        S#00435
+        S#00436
+        S#00437
+        S#00438
+        S#00439
+        S#00440
+        S#00441
+        S#00442
+        S#00443
+        S#00444
+        S#00445
+        S#00446
+        S#00447
+        S#00448
+        S#00449
+        S#00450
+        S#00451
+        S#00452
+        S#00453
+        S#00454
+        S#00455
+        S#00456
+        S#00457
+        S#00458
+        S#00459
+        S#00460
+        S#00461
+        S#00462
+        S#00463
+        S#00464
+        S#00465
+        S#00466
+        S#00467
+        S#00468
+        S#00469
+        S#00470
+        S#00471
+        S#00472
+        S#00473
+        S#00474
+        S#00475
+        S#00476
+        S#00477
+        S#00478
+        S#00479
+        S#00480
+        S#00481
+        S#00482
+        S#00483
+        S#00484
+        S#00485
+        S#00486
+        S#00487
+        S#00488
+        S#00489
+        S#00490
+        S#00491
+        S#00492
+        S#00493
+        S#00494
+        S#00495
+        S#00496
+        S#00497
+        S#00498
+        S#00499
+        S#00500
+        S#00501
+        S#00502
+        S#00503
+        S#00504
+        S#00505
+        S#00506
+        S#00507
+        S#00508
+        S#00509
+        S#00510
+        S#00511
+        S#00512
+        S#00513
+        S#00514
+        S#00515
+        S#00516
+        S#00517
+        S#00518
+        S#00519
+        S#00520
+        S#00521
+        S#00522
+        S#00523
+        S#00524
+        S#00525
+        S#00526
+        S#00527
+        S#00528
+        S#00529
+        S#00530
+        S#00531
+        S#00532
+        S#00533
+        S#00534
+        S#00535
+        S#00536
+        S#00537
+        S#00538
+        S#00539
+        S#00540
+        S#00541
+        S#00542
+        S#00543
+        S#00544
+        S#00545
+        S#00546
+        S#00547
+        S#00548
+        S#00549
+        S#00550
+        S#00551
+        S#00552
+        S#00553
+        S#00554
+        S#00555
+        S#00556
+        S#00557
+        S#00558
+        S#00559
+        S#00560
+        S#00561
+        S#00562
+        S#00563
+        S#00564
+        S#00565
+        S#00566
+        S#00567
+        S#00568
+        S#00569
+        S#00570
+        S#00571
+        S#00572
+        S#00573
+        S#00574
+        S#00575
+        S#00576
+        S#00577
+        S#00578
+        S#00579
+        S#00580
+        S#00581
+        S#00582
+        S#00583
+        S#00584
+        S#00585
+        S#00586
+        S#00587
+        S#00588
+        S#00589
+        S#00590
+        S#00591
+        S#00592
+        S#00593
+        S#00594
+        S#00595
+        S#00596
+        S#00597
+        S#00598
+        S#00599
+        S#00600
+      Lease
+        L#00601
+        L#00602
+        L#00603
+        L#00604
+        L#00605
+        L#00606
+        L#00607
+        L#00608
+        L#00609
+        L#00610
+        L#00611
+        L#00612
+        L#00613
+        L#00614
+        L#00615
+        L#00616
+        L#00617
+        L#00618
+        L#00619
+        L#00620
+        L#00621
+        L#00622
+        L#00623
+        L#00624
+        L#00625
+        L#00626
+        L#00627
+        L#00628
+        L#00629
+        L#00630
+        L#00631
+        L#00632
+        L#00633
+        L#00634
+        L#00635
+        L#00636
+        L#00637
+        L#00638
+        L#00639
+        L#00640
+        L#00641
+        L#00642
+        L#00643
+        L#00644
+        L#00645
+        L#00646
+        L#00647
+        L#00648
+        L#00649
+        L#00650
+        L#00651
+        L#00652
+        L#00653
+        L#00654
+        L#00655
+        L#00656
+        L#00657
+        L#00658
+        L#00659
+        L#00660
+        L#00661
+        L#00662
+        L#00663
+        L#00664
+        L#00665
+        L#00666
+        L#00667
+        L#00668
+        L#00669
+        L#00670
+        L#00671
+        L#00672
+        L#00673
+        L#00674
+        L#00675
+        L#00676
+        L#00677
+        L#00678
+        L#00679
+        L#00680
+        L#00681
+        L#00682
+        L#00683
+        L#00684
+        L#00685
+        L#00686
+        L#00687
+        L#00688
+        L#00689
+        L#00690
+        L#00691
+        L#00692
+        L#00693
+        L#00694
+        L#00695
+        L#00696
+        L#00697
+        L#00698
+        L#00699
+        L#00700
+        L#00701
+        L#00702
+        L#00703
+        L#00704
+        L#00705
+        L#00706
+        L#00707
+        L#00708
+        L#00709
+        L#00710
+        L#00711
+        L#00712
+        L#00713
+        L#00714
+        L#00715
+        L#00716
+        L#00717
+        L#00718
+        L#00719
+        L#00720
+        L#00721
+        L#00722
+        L#00723
+        L#00724
+        L#00725
+        L#00726
+        L#00727
+        L#00728
+        L#00729
+        L#00730
+        L#00731
+        L#00732
+        L#00733
+        L#00734
+        L#00735
+        L#00736
+        L#00737
+        L#00738
+        L#00739
+        L#00740
+        L#00741
+        L#00742
+        L#00743
+        L#00744
+        L#00745
+        L#00746
+        L#00747
+        L#00748
+        L#00749
+        L#00750
+        L#00751
+        L#00752
+        L#00753
+        L#00754
+        L#00755
+        L#00756
+        L#00757
+        L#00758
+        L#00759
+        L#00760
+        L#00761
+        L#00762
+        L#00763
+        L#00764
+        L#00765
+        L#00766
+        L#00767
+        L#00768
+        L#00769
+        L#00770
+        L#00771
+        L#00772
+        L#00773
+        L#00774
+        L#00775
+        L#00776
+        L#00777
+        L#00778
+        L#00779
+        L#00780
+        L#00781
+        L#00782
+        L#00783
+        L#00784
+        L#00785
+        L#00786
+        L#00787
+        L#00788
+        L#00789
+        L#00790
+        L#00791
+        L#00792
+        L#00793
+        L#00794
+        L#00795
+        L#00796
+        L#00797
+        L#00798
+        L#00799
+        L#00800
+      Maintenance & Support
+        M#00801
+        M#00802
+        M#00803
+        M#00804
+        M#00805
+        M#00806
+        M#00807
+        M#00808
+        M#00809
+        M#00810
+        M#00811
+        M#00812
+        M#00813
+        M#00814
+        M#00815
+        M#00816
+        M#00817
+        M#00818
+        M#00819
+        M#00820
+        M#00821
+        M#00822
+        M#00823
+        M#00824
+        M#00825
+        M#00826
+        M#00827
+        M#00828
+        M#00829
+        M#00830
+        M#00831
+        M#00832
+        M#00833
+        M#00834
+        M#00835
+        M#00836
+        M#00837
+        M#00838
+        M#00839
+        M#00840
+        M#00841
+        M#00842
+        M#00843
+        M#00844
+        M#00845
+        M#00846
+        M#00847
+        M#00848
+        M#00849
+        M#00850
+        M#00851
+        M#00852
+        M#00853
+        M#00854
+        M#00855
+        M#00856
+        M#00857
+        M#00858
+        M#00859
+        M#00860
+        M#00861
+        M#00862
+        M#00863
+        M#00864
+        M#00865
+        M#00866
+        M#00867
+        M#00868
+        M#00869
+        M#00870
+        M#00871
+        M#00872
+        M#00873
+        M#00874
+        M#00875
+        M#00876
+        M#00877
+        M#00878
+        M#00879
+        M#00880
+        M#00881
+        M#00882
+        M#00883
+        M#00884
+        M#00885
+        M#00886
+        M#00887
+        M#00888
+        M#00889
+        M#00890
+        M#00891
+        M#00892
+        M#00893
+        M#00894
+        M#00895
+        M#00896
+        M#00897
+        M#00898
+        M#00899
+        M#00900
+        M#00901
+        M#00902
+        M#00903
+        M#00904
+        M#00905
+        M#00906
+        M#00907
+        M#00908
+        M#00909
+        M#00910
+        M#00911
+        M#00912
+        M#00913
+        M#00914
+        M#00915
+        M#00916
+        M#00917
+        M#00918
+        M#00919
+        M#00920
+        M#00921
+        M#00922
+        M#00923
+        M#00924
+        M#00925
+        M#00926
+        M#00927
+        M#00928
+        M#00929
+        M#00930
+        M#00931
+        M#00932
+        M#00933
+        M#00934
+        M#00935
+        M#00936
+        M#00937
+        M#00938
+        M#00939
+        M#00940
+        M#00941
+        M#00942
+        M#00943
+        M#00944
+        M#00945
+        M#00946
+        M#00947
+        M#00948
+        M#00949
+        M#00950
+        M#00951
+        M#00952
+        M#00953
+        M#00954
+        M#00955
+        M#00956
+        M#00957
+        M#00958
+        M#00959
+        M#00960
+        M#00961
+        M#00962
+        M#00963
+        M#00964
+        M#00965
+        M#00966
+        M#00967
+        M#00968
+        M#00969
+        M#00970
+        M#00971
+        M#00972
+        M#00973
+        M#00974
+        M#00975
+        M#00976
+        M#00977
+        M#00978
+        M#00979
+        M#00980
+        M#00981
+        M#00982
+        M#00983
+        M#00984
+        M#00985
+        M#00986
+        M#00987
+        M#00988
+        M#00989
+        M#00990
+        M#00991
+        M#00992
+        M#00993
+        M#00994
+        M#00995
+        M#00996
+        M#00997
+        M#00998
+        M#00999
+        M#01000
+;
+
+--296 elements, depth 4
+DEFINE DIMENSION Site
+  HIERARCHY:
+    All
+      Europe
+        France
+          Paris
+          Marseille
+          Lyon
+          Toulouse
+        Germany
+          Berlin
+          Hamburg
+          Munich
+          Cologne
+        Italy
+          Rome
+          Milan
+          Naples
+          Turin
+        Spain
+          Madrid
+          Barcelona
+          Valencia
+          Seville
+        UK
+          London
+          Manchester
+          Birmingham
+          Liverpool
+        Netherlands
+          Amsterdam
+          Rotterdam
+          The Hague
+          Utrecht
+        Switzerland
+          Zurich
+          Geneva
+          Basel
+          Bern
+      South America
+        Brazil
+          Sao Paulo
+          Rio de Janeiro
+          Brasilia
+          Salvador
+          Fortaleza
+        Argentina
+          Buenos Aires
+          Cordoba
+          Rosario
+          Mendoza
+          La Plata
+        Colombia
+          Bogota
+          Medellin
+          Cali
+          Barranquilla
+          Cartagena
+        Peru
+          Lima
+          Arequipa
+          Trujillo
+          Chiclayo
+          Iquitos
+        Chile
+          Santiago
+          Valparaiso
+          Concepcion
+          La Serena
+          Antofagasta
+        Venezuela
+          Caracas
+          Maracaibo
+          Valencia
+          Barquisimeto
+          Maracay
+        Ecuador
+          Quito
+          Guayaquil
+          Cuenca
+          Santo Domingo
+          Machala
+        Bolivia
+          La Paz
+          Santa Cruz
+          Cochabamba
+          Sucre
+          Oruro
+        Paraguay
+          Asuncion
+          Ciudad del Este
+          Encarnacion
+          Luque
+          San Lorenzo
+        Uruguay
+          Montevideo
+          Salto
+          Punta del Este
+          Colonia del Sacramento
+          Rivera
+      North America
+        United States
+          New York
+          Los Angeles
+          Chicago
+          Houston
+          Phoenix
+        Mexico
+          Mexico City
+          Guadalajara
+          Monterrey
+          Puebla
+          Tijuana
+        Canada
+          Toronto
+          Vancouver
+          Montreal
+          Calgary
+          Ottawa
+        Guatemala
+          Guatemala City
+          Quetzaltenango
+          Antigua
+          Escuintla
+          Mixco
+        Cuba
+          Havana
+          Santiago de Cuba
+          Camaguey
+          Holguin
+          Santa Clara
+        Dominican Republic
+          Santo Domingo
+          Santiago de los Caballeros
+          La Romana
+          San Pedro de Macoris
+          Puerto Plata
+        Honduras
+          Tegucigalpa
+          San Pedro Sula
+          La Ceiba
+          Choloma
+          El Progreso
+        Nicaragua
+          Managua
+          Leon
+          Masaya
+          Tipitapa
+          Chinandega
+        El Salvador
+          San Salvador
+          Santa Ana
+          Soyapango
+          San Miguel
+          Mejicanos
+        Costa Rica
+          San Jose
+          Puerto Limon
+          Alajuela
+          Cartago
+          Heredia
+      Asia
+        China
+          Shanghai
+          Beijing
+          Guangzhou
+          Shenzhen
+          Chengdu
+        India
+          Mumbai
+          Delhi
+          Bangalore
+          Hyderabad
+          Ahmedabad
+        Indonesia
+          Jakarta
+          Surabaya
+          Bandung
+          Medan
+          Semarang
+        Pakistan
+          Karachi
+          Lahore
+          Faisalabad
+          Rawalpindi
+          Multan
+        Bangladesh
+          Dhaka
+          Chittagong
+          Khulna
+          Rajshahi
+          Sylhet
+        Japan
+          Tokyo
+          Yokohama
+          Osaka
+          Nagoya
+          Sapporo
+        Philippines
+          Manila
+          Quezon City
+          Davao City
+          Cebu City
+          Caloocan
+        Vietnam
+          Ho Chi Minh City
+          Hanoi
+          Da Nang
+          Hai Phong
+          Can Tho
+        Turkey
+          Istanbul
+          Ankara
+          Izmir
+          Bursa
+          Adana
+        Thailand
+          Bangkok
+          Nonthaburi
+          Nakhon Ratchasima
+          Chiang Mai
+          Hat Yai
+      Africa
+        Nigeria
+          Lagos
+          Kano
+          Ibadan
+          Abuja
+          Port Harcourt
+        Ethiopia
+          Addis Ababa
+          Dire Dawa
+          Mekelle
+          Gondar
+          Bahir Dar
+        Egypt
+          Cairo
+          Alexandria
+          Giza
+          Shubra El Kheima
+          Port Said
+        DR Congo
+          Kinshasa
+          Lubumbashi
+          Mbuji-Mayi
+          Kisangani
+          Kananga
+        South Africa
+          Johannesburg
+          Cape Town
+          Durban
+          Pretoria
+          Port Elizabeth
+        Tanzania
+          Dar es Salaam
+          Mwanza
+          Arusha
+          Dodoma
+          Mbeya
+        Kenya
+          Nairobi
+          Mombasa
+          Kisumu
+          Nakuru
+          Eldoret
+        Uganda
+          Kampala
+          Gulu
+          Lira
+          Jinja
+          Mbarara
+        Algeria
+          Algiers
+          Oran
+          Constantine
+          Annaba
+          Blida
+        Sudan
+          Khartoum
+          Omdurman
+          Port Sudan
+          Kassala
+          El Obeid
+;
+
+DEFINE DIMENSION PLArticle
+  HIERARCHY:
+    REVENUE ID 1
+      Product Sales ID 2
+      Service Revenue
+    COST OF GOODS SOLD ID 4
+      Direct Materials ID 5
+      Direct Labor ID 6
+      Other Direct Costs ID 7
+    GROSS PROFIT ID 8
+    GROSS MARGIN (%) ID 9
+    OPERATING EXPENSES ID 10
+    OPERATING INCOME ID 11
+    OPERATING MARGIN (%) ID 12
+;
+
+DEFINE DIMENSION Month
+  HIERARCHY:
+    All time ID 1:
+      2021/jan ID 13
+      2021/feb ID 14
+      2021/mar ID 15
+      2021/apr ID 17
+      2021/may ID 18
+      2021/jun ID 19
+      2021/jul ID 21
+      2021/aug ID 22
+      2021/sep ID 23
+      2021/oct ID 25
+      2021/nov ID 26
+      2021/dec ID 27
+      2022/jan ID 29
+      2022/feb ID 30
+      2022/mar ID 31
+      2022/apr ID 33
+      2022/may ID 34
+      2022/jun ID 35
+      2022/jul ID 37
+      2022/aug ID 38
+      2022/sep ID 39
+      2022/oct ID 41
+      2022/nov ID 42
+      2022/dec ID 43
+      2023/jan ID 45
+      2023/feb ID 46
+      2023/mar ID 47
+      2023/apr ID 49
+      2023/may ID 50
+      2023/jun ID 51
+      2023/jul ID 53
+      2023/aug ID 54
+      2023/sep ID 55
+      2023/oct ID 57
+      2023/nov ID 58
+      2023/dec ID 59
+      2024/jan ID 61
+      2024/feb ID 62
+      2024/mar ID 63
+      2024/apr ID 65
+      2024/may ID 66
+      2024/jun ID 67
+      2024/jul ID 69
+      2024/aug ID 70
+      2024/sep ID 71
+      2024/oct ID 73
+      2024/nov ID 74
+      2024/dec ID 75
+      2025/jan ID 77
+      2025/feb ID 78
+      2025/mar ID 79
+      2025/apr ID 81
+      2025/may ID 82
+      2025/jun ID 83
+      2025/jul ID 85
+      2025/aug ID 86
+      2025/sep ID 87
+      2025/oct ID 89
+      2025/nov ID 90
+      2025/dec ID 91
+      2026/jan ID 93
+      2026/feb ID 94
+      2026/mar ID 95
+      2026/apr ID 97
+      2026/may ID 98
+      2026/jun ID 99
+      2026/jul ID 101
+      2026/aug ID 102
+      2026/sep ID 103
+      2026/oct ID 105
+      2026/nov ID 106
+      2026/dec ID 107
+      2027/jan ID 109
+      2027/feb ID 110
+      2027/mar ID 111
+      2027/apr ID 113
+      2027/may ID 114
+      2027/jun ID 115
+      2027/jul ID 117
+      2027/aug ID 118
+      2027/sep ID 119
+      2027/oct ID 121
+      2027/nov ID 122
+      2027/dec ID 123
+      2028/jan ID 125
+      2028/feb ID 126
+      2028/mar ID 127
+      2028/apr ID 129
+      2028/may ID 130
+      2028/jun ID 131
+      2028/jul ID 133
+      2028/aug ID 134
+      2028/sep ID 135
+      2028/oct ID 137
+      2028/nov ID 138
+      2028/dec ID 139
+      2029/jan ID 141
+      2029/feb ID 142
+      2029/mar ID 143
+      2029/apr ID 145
+      2029/may ID 146
+      2029/jun ID 147
+      2029/jul ID 149
+      2029/aug ID 150
+      2029/sep ID 151
+      2029/oct ID 153
+      2029/nov ID 154
+      2029/dec ID 155
+      2030/jan ID 157
+      2030/feb ID 158
+      2030/mar ID 159
+      2030/apr ID 161
+      2030/may ID 162
+      2030/jun ID 163
+      2030/jul ID 165
+      2030/aug ID 166
+      2030/sep ID 167
+      2030/oct ID 169
+      2030/nov ID 170
+      2030/dec ID 171
+;
+
+--171*55*6*136*1006*296=2.285275956×10¹²
+--more than Two Trillion of value cells, each of 7 measures. Strictly saying is almost 16 TRILLION of cells of 7 dimensions.
+DEFINE CUBE Sales_table
+  DIMENSIONS:
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  MEASURES:
+    amount
+    qty
+    price
+    tax
+    amount_tax
+    payment
+    debt
+  FROM:
+    Sales
+;
+
+DEFINE CUBE Exchrate_table
+  DIMENSIONS:
+    Currency
+    Period
+  MEASURES:
+    rate
+  FROM:
+    Exchrate
+;
+
+DEFINE CUBE Sales_amounts
+  DIMENSIONS:
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  VALUE:
+    SUM(amount)
+  FROM:
+    Sales_table
+  ROLLUP:
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  ;
+
+DEFINE CUBE Sales_base
+  DIMENSIONS:
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  MEASURES:
+    amount = SUM(amount)
+    qty = SUM(qty)
+    price = amount / qty
+    tax = SUM(tax)
+    amount_tax = amount * (tax * 0.01)
+    payment = SUM(payment)
+    debt = amount - payment
+  FROM:
+    Sales_table
+  ;
+
+DEFINE CUBE Sales_cons
+  DIMENSIONS:
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  MEASURES:
+    amount = SUM(amount)
+    qty = SUM(qty)
+    price = ROUND(amount / GREATEST(qty, 1),1)
+    tax = SUM(tax)
+    amount_tax = SUM(amount_tax)
+    payment = SUM(payment)
+    debt = SUM(debt)
+  FROM:
+    Sales_base
+  ROLLUP:
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+;
+
+DEFINE CUBE Sales_pl
+  DIMENSIONS:
+    PLArticle = 2
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  VALUE:
+    SUM(amount*rate)
+  FROM: Sales_base
+  JOIN: Exchrate_table
+  ROLLUP:
+    PLArticle
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+;
+
+DEFINE CUBE ProfitLoss
+  DIMENSIONS:
+    PLArticle
+    Currency
+    Product
+    Period
+    Contract
+    Client
+    Site
+  FROM:
+    Sales_pl
+  TAGS:
+    revenue = SUM(PLArticle[1])
+    cogs = SUM(PLArticle[4])
+    operating_expenses = SUM(PLArticle[10])
+  VALUE: 
+    PLArticle[8] = revenue - cogs
+    PLArticle[9] = round(100 * (revenue - cogs) / revenue, 1) 
+    PLArticle[11] = revenue - cogs - operating_expenses
+    PLArticle[12] = round(100 * (revenue - cogs - operating_expenses) / revenue, 1)
+    SUM(value)
+;
+
+DEFINE VIEW 'Sales Contracts' 
+  FROM: 
+    Sales_cons
+  ROWS:
+    Contract
+  COLUMNS:
+    MEASURES BY Period
+  MEASURES:
+    amount LABEL 'Amount'
+    qty LABEL 'Quantity'
+    price LABEL 'Price'
+    tax LABEL 'Tax percent'
+    amount_tax LABEL 'Tax'
+    payment LABEL 'Payment'
+    debt LABEL 'Debt'
+;
+
+DEFINE VIEW 'Sales Products' 
+  FROM: 
+    Sales_cons
+  ROWS:
+    Product
+  COLUMNS:
+    MEASURES BY Month
+  MEASURES:
+    amount LABEL 'Amount'
+    qty LABEL 'Quantity'
+    price LABEL 'Price'
+    tax LABEL 'Tax percent'
+    amount_tax LABEL 'Tax'
+    payment LABEL 'Payment'
+    debt LABEL 'Debt'
+;
+
+DEFINE VIEW 'PL MST'
+  FROM: ProfitLoss
+  ROWS: PLArticle
+  COLUMNS: Period
+;
+
+DEFINE VIEW 'Exchrates'
+  FROM: Exchrate_table
+  ROWS: Month
+  COLUMNS: Currency
+;
