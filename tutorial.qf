@@ -17,6 +17,14 @@
 
 --==========================================================================================
 
+--
+-- ============================================================================
+-- QUBESFOLDER - PROPRIETARY SOFTWARE
+-- ============================================================================
+-- Copyright (C) 2019-2026 Mikhail Shamota
+-- This source code is confidential and proprietary.
+-- Commercial licensing: mikhail.shamota@gmail.com
+-- ============================================================================
 --171 elements, depth 4
 DEFINE DIMENSION Period
   HIERARCHY:
@@ -285,7 +293,7 @@ DEFINE DIMENSION Client
           Shopify Inc
           Uber Technologies
           Airbnb Inc
-          Pr Technologies
+          Palantir Technologies
           Snowflake Inc
           Datadog Inc
           CrowdStrike Holdings
@@ -1706,21 +1714,23 @@ DEFINE DIMENSION PLArticle
   HIERARCHY:
     REVENUE ID 1
       Product Sales ID 2
-      Service Revenue
+      Service Revenue ID 3
     COST OF GOODS SOLD ID 4
       Direct Materials ID 5
       Direct Labor ID 6
       Other Direct Costs ID 7
+      Engineering ID 12
+      Production ID 13
     GROSS PROFIT ID 8
     GROSS MARGIN (%) ID 9
     OPERATING EXPENSES ID 10
     OPERATING INCOME ID 11
-    OPERATING MARGIN (%) ID 12
+    OPERATING MARGIN (%) ID 14
 ;
 
 DEFINE DIMENSION Month
+  AS: Period
   HIERARCHY:
-    All time ID 1:
       2021/jan ID 13
       2021/feb ID 14
       2021/mar ID 15
@@ -1843,6 +1853,66 @@ DEFINE DIMENSION Month
       2030/dec ID 171
 ;
 
+DEFINE DIMENSION Measure
+HIERARCHY:
+  amount
+  qty
+  price
+  tax
+  amount_tax
+  payment
+  debt
+;
+
+DEFINE DIMENSION Org
+  HIERARCHY:
+    Corp. ID 1
+      IT ID 2
+      Office ID 3
+      HR ID 4
+      S4 ID 5
+      S5 ID 6
+      S6 ID 7
+      S7 ID 8
+      S8 ID 9
+      S9 ID 10
+      S10 ID 11
+      Engineering ID 12
+      Production ID 13
+;
+
+DEFINE DIMENSION OrgPlain
+  AS: Org
+  HIERARCHY:
+    IT ID 2
+    Office ID 3
+    HR ID 4
+    S4 ID 5
+    S5 ID 6
+    S6 ID 7
+    S7 ID 8
+    S8 ID 9
+    S9 ID 10
+    S10 ID 11
+    Engineering ID 12
+    Production ID 13
+;
+
+DEFINE DIMENSION Metric
+HIERARCHY:
+  tickets ID 1
+  square ID 2
+  headcount ID 3
+  res4 ID 4
+  res5 ID 5
+  res6 ID 6
+  res7 ID 7
+  res8 ID 8
+  res9 ID 9
+  res10 ID 10
+  none ID 11
+;
+
 --171*55*6*136*1006*296=2.285275956×10¹²
 --more than Two Trillion of value cells, each of 7 measures. Strictly saying is almost 16 TRILLION of cells of 7 dimensions.
 DEFINE CUBE Sales_table
@@ -1850,18 +1920,12 @@ DEFINE CUBE Sales_table
     Currency
     Product
     Period
+  Site
     Contract
     Client
     Site
-  MEASURES:
-    amount
-    qty
-    price
-    tax
-    amount_tax
-    payment
-    debt
-  FROM:
+    Measure
+  SOURCE:
     Sales
 ;
 
@@ -1869,9 +1933,7 @@ DEFINE CUBE Exchrate_table
   DIMENSIONS:
     Currency
     Period
-  MEASURES:
-    rate
-  FROM:
+  SOURCE:
     Exchrate
 ;
 
@@ -1880,17 +1942,22 @@ DEFINE CUBE Sales_amounts
     Currency
     Product
     Period
+  Site
     Contract
     Client
     Site
+    Measure
+  LET:
+    amount = SUM(Measure[1])
   VALUE:
-    SUM(amount)
+    amount --amount AS value
   FROM:
     Sales_table
   ROLLUP:
     Currency
     Product
     Period
+    Site
     Contract
     Client
     Site
@@ -1901,37 +1968,55 @@ DEFINE CUBE Sales_base
     Currency
     Product
     Period
+  Site
     Contract
     Client
     Site
-  MEASURES:
-    amount = SUM(amount)
-    qty = SUM(qty)
-    price = amount / qty
-    tax = SUM(tax)
-    amount_tax = amount * (tax * 0.01)
-    payment = SUM(payment)
-    debt = amount - payment
+    Measure
+  LET:
+    amount = SUM(Measure[1]) --amount <--- inner.value
+    qty = SUM(Measure[2])
+    tax = SUM(Measure[4])
+    payment = SUM(Measure[6])
+  VALUE:
+    Measure[1] = amount --value <--- amount
+    Measure[2] = qty
+    Measure[3] = amount / qty
+    Measure[4] = tax
+    Measure[5] = amount * (tax * 0.01)
+    Measure[6] = payment
+    Measure[7] = amount - payment
   FROM:
     Sales_table
-  ;
+--  PROPAGATE:
+--    debt OVER Period METHOD carry_forward
+;
 
 DEFINE CUBE Sales_cons
   DIMENSIONS:
     Currency
     Product
     Period
+  Site
     Contract
     Client
     Site
-  MEASURES:
-    amount = SUM(amount)
-    qty = SUM(qty)
-    price = ROUND(amount / GREATEST(qty, 1),1)
-    tax = SUM(tax)
-    amount_tax = SUM(amount_tax)
-    payment = SUM(payment)
-    debt = SUM(debt)
+    Measure
+  LET:
+    amount = SUM(Measure[1])
+    qty = SUM(Measure[2])
+    tax = SUM(Measure[4])
+    amount_tax = SUM(Measure[5])
+    payment = SUM(Measure[6])
+    debt = SUM(Measure[7])
+  VALUE:
+    Measure[1] = amount
+    Measure[2] = qty
+    Measure[3] = ROUND(amount / GREATEST(qty, 1),1)
+    Measure[4] = tax
+    Measure[5] = amount_tax
+    Measure[6] = payment
+    Measure[7] = debt
   FROM:
     Sales_base
   ROLLUP:
@@ -1941,6 +2026,23 @@ DEFINE CUBE Sales_cons
     Contract
     Client
     Site
+;    
+
+DEFINE CUBE Sales_pl0
+  DIMENSIONS:
+    Currency
+    Product
+    Period
+  Site
+    Contract
+    Client
+    Site
+    Measure
+  LET:
+    amount = SUM(Measure[1])
+  VALUE:
+    amount
+  FROM: Sales_base
 ;
 
 DEFINE CUBE Sales_pl
@@ -1949,35 +2051,60 @@ DEFINE CUBE Sales_pl
     Currency
     Product
     Period
+    Site
     Contract
     Client
     Site
   VALUE:
-    SUM(amount*rate)
-  FROM: Sales_base
-  JOIN: Exchrate_table
+    SUM(amount*Exchrate_table)
+  FROM: 
+    Sales_pl0
+  JOIN: 
+    Exchrate_table USING Currency AND Period
+;
+
+DEFINE CUBE ProfitLossCosts
+  DIMENSIONS:
+    PLArticle = transform(Org, [12,13], [12,13], 0)
+    Period
+  VALUE:
+    SUM(value)
+  FROM:
+    allocated_final
+;
+
+DEFINE CUBE ProfitLossUnited
+  DIMENSIONS:
+    PLArticle
+    Period
+  VALUE:
+    SUM(value)
+  FROM:
+    Sales_pl
+  UNION:
+    ProfitLossCosts
+;
+
+DEFINE CUBE ProfitLoss_cons
+  DIMENSIONS:
+    PLArticle
+    Period
+  FROM:
+    ProfitLossUnited
+  VALUE: 
+    SUM(value)
   ROLLUP:
     PLArticle
-    Currency
-    Product
     Period
-    Contract
-    Client
-    Site
 ;
 
 DEFINE CUBE ProfitLoss
   DIMENSIONS:
     PLArticle
-    Currency
-    Product
     Period
-    Contract
-    Client
-    Site
   FROM:
-    Sales_pl
-  TAGS:
+    ProfitLoss_cons
+  LET:
     revenue = SUM(PLArticle[1])
     cogs = SUM(PLArticle[4])
     operating_expenses = SUM(PLArticle[10])
@@ -1985,9 +2112,144 @@ DEFINE CUBE ProfitLoss
     PLArticle[8] = revenue - cogs
     PLArticle[9] = round(100 * (revenue - cogs) / revenue, 1) 
     PLArticle[11] = revenue - cogs - operating_expenses
-    PLArticle[12] = round(100 * (revenue - cogs - operating_expenses) / revenue, 1)
+    PLArticle[14] = round(100 * (revenue - cogs - operating_expenses) / revenue, 1)
     SUM(value)
 ;
+-------------------------------------------------------
+---------------------COSTS PART------------------------
+DEFINE CUBE DirectCosts
+DIMENSIONS:
+	Org
+	Metric
+  Period
+SOURCE:
+	DirectCosts_table
+;
+
+DEFINE CUBE CostDrivers
+DIMENSIONS:
+	Org
+	Metric
+  Period
+SOURCE:
+	CostDrivers_table
+;
+
+------------------------------------------------------------------------------------------------------------------
+DEFINE CUBE allparts
+DIMENSIONS:
+	Org
+	Metric
+  Period
+VALUE:
+	value / SumByPartition(value,Metric,Period)
+SOURCE:
+	CostDrivers_table
+;
+
+DEFINE CUBE costs
+DIMENSIONS:
+	Org
+	Metric
+  Period
+SOURCE: 
+	DirectCosts_table
+;
+
+DEFINE CUBE servicecostpart
+DIMENSIONS:
+	Org
+	Metric
+  Period
+LET: 
+	partamount = SUM(costs * allparts)
+FROM:
+	allparts
+JOIN:
+	costs USING Metric AND Period
+;
+
+--1st iteration
+DEFINE CUBE x1
+DIMENSIONS:
+	Org
+  Period
+LET:
+	partamount = SUM(1 * value)
+FROM: 
+	costs
+UNION:
+  servicecostpart 
+;
+
+DEFINE CUBE allocated1
+DIMENSIONS:
+	Org
+	Metric
+  Period
+VALUE:
+	SUM(partamount)
+FROM:
+	x1
+JOIN:
+	costs USING Org AND Period
+;
+
+--LOOPS---OOPS---
+DEFINE CUBE allparts{i} 
+FOR: i IN 1..3
+DIMENSIONS:
+  Org
+  Metric
+  Period
+VALUE:
+  SUM(allparts * allocated{i})
+FROM:
+  allparts
+JOIN:
+  allocated{i} USING Metric AND Period
+;
+
+DEFINE CUBE i{i}allparts 
+FOR: i IN 1..3
+DIMENSIONS:
+  Org
+  Period
+VALUE:
+  SUM(1 * value)
+FROM:
+  costs
+UNION:
+  allparts{i}
+;
+
+DEFINE CUBE allocated{i+1} 
+FOR: i IN 1..3
+DIMENSIONS:
+  Org
+  Metric
+  Period
+VALUE:
+  SUM(value)
+FROM:
+  i{i}allparts
+JOIN:
+  costs USING Org AND Period
+;
+
+--report
+DEFINE CUBE allocated_final
+DIMENSIONS:
+  Org
+  Metric
+  Period
+FROM:
+  allocated4
+VALUE:
+  ROUND(SUM(value),0)
+;
+-------------------------VIEWS-------------------------
+-------------------------------------------------------
 
 DEFINE VIEW 'Sales Contracts' 
   FROM: 
@@ -1995,15 +2257,7 @@ DEFINE VIEW 'Sales Contracts'
   ROWS:
     Contract
   COLUMNS:
-    MEASURES BY Period
-  MEASURES:
-    amount LABEL 'Amount'
-    qty LABEL 'Quantity'
-    price LABEL 'Price'
-    tax LABEL 'Tax percent'
-    amount_tax LABEL 'Tax'
-    payment LABEL 'Payment'
-    debt LABEL 'Debt'
+    Measure BY Period
 ;
 
 DEFINE VIEW 'Sales Products' 
@@ -2012,15 +2266,7 @@ DEFINE VIEW 'Sales Products'
   ROWS:
     Product
   COLUMNS:
-    MEASURES BY Month
-  MEASURES:
-    amount LABEL 'Amount'
-    qty LABEL 'Quantity'
-    price LABEL 'Price'
-    tax LABEL 'Tax percent'
-    amount_tax LABEL 'Tax'
-    payment LABEL 'Payment'
-    debt LABEL 'Debt'
+    Measure BY Month
 ;
 
 DEFINE VIEW 'PL MST'
@@ -2033,4 +2279,28 @@ DEFINE VIEW 'Exchrates'
   FROM: Exchrate_table
   ROWS: Month
   COLUMNS: Currency
+;
+
+DEFINE VIEW 'Direct Costs'
+FROM: DirectCosts
+ROWS: OrgPlain
+COLUMNS: Month
+;
+
+DEFINE VIEW 'Cost Drivers'
+FROM: CostDrivers
+ROWS: Org BY Period
+COLUMNS: Metric
+;
+
+DEFINE VIEW 'Allocated Costs (debug)'
+FROM: allocated_final
+ROWS: Org BY Period
+COLUMNS: Metric
+;
+
+DEFINE VIEW 'Allocated Costs'
+FROM: allocated_final
+ROWS: Period
+COLUMNS: Org
 ;
